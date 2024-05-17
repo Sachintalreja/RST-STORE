@@ -68,7 +68,6 @@ const Header = () => {
 				display={{ base: open ? 'block' : 'none', md: 'flex' }}
 				width={{ base: 'full', md: 'auto' }}
 				mt={{ base: '3', md: '0' }}>
-				<HeaderMenuItem icon={FaMale} url='/products/men/fashion' label='Men' />
 
 				<HeaderMenuItem icon={HiShoppingBag} url='/cart' label='Cart' />
 
