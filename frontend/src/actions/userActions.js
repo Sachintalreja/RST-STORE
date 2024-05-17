@@ -26,6 +26,9 @@ import {
 	USER_UPDATE_PROFILE_SUCCESS,
 	USER_UPDATE_REQUEST,
 	USER_UPDATE_SUCCESS,
+	USER_GETBYID_FAIL,
+	USER_GETBYID_REQUEST,
+	USER_GETBYID_SUCCESS,
 } from '../constants/userConstants';
 
 export const login = (email, password) => async (dispatch) => {
@@ -237,4 +240,32 @@ export const updateUser = (user) => async (dispatch, getState) => {
 					: err.message,
 		});
 	}
+};
+
+export const getUserById = (id) => async (dispatch, getState) => {
+	try {
+	  dispatch({ type: USER_GETBYID_REQUEST });
+  
+	  const {
+		userLogin: { userInfo },
+	  } = getState();
+  
+	  const config = {
+		headers: {
+		  Authorization: `Bearer ${userInfo.token}`,
+		},
+	  };
+  
+	  const { data } = await axios.get(`/api/users/${id}`, config);
+  
+	  dispatch({ type: USER_GETBYID_SUCCESS, payload: data });
+	} catch (err) {
+	  dispatch({
+		type: USER_GETBYID_FAIL,
+		payload:
+		err.response && err.response.data.message
+          ? err.response.data.message
+          : err.message,
+    });
+  }
 };

@@ -19,6 +19,7 @@ import {
 	productUpdateReducer,
 } from './reducers/productReducers';
 import {
+	getUserByIdReducer,
 	userDeleteReducer,
 	userDetailsReducer,
 	userListReducer,
@@ -26,7 +27,9 @@ import {
 	userRegisterReducer,
 	userUpdateProfileReducer,
 	userUpdateReducer,
+
 } from './reducers/userReducer';
+import { getUserById } from './actions/userActions';
 
 const reducer = combineReducers({
 	productList: productListReducer,
@@ -39,6 +42,7 @@ const reducer = combineReducers({
 	userLogin: userLoginReducer,
 	userRegister: userRegisterReducer,
 	userDetails: userDetailsReducer,
+	getUserById:getUserByIdReducer,
 	userUpdateProfile: userUpdateProfileReducer,
 	userList: userListReducer,
 	userDelete: userDeleteReducer,

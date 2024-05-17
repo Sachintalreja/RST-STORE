@@ -17,6 +17,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link as RouterLink, useNavigate } from 'react-router-dom';
 import { logout } from '../actions/userActions';
 import HeaderMenuItem from './HeaderMenuItem';
+import { FaMale } from 'react-icons/fa';
 
 const Header = () => {
 	const dispatch = useDispatch();
@@ -67,6 +68,8 @@ const Header = () => {
 				display={{ base: open ? 'block' : 'none', md: 'flex' }}
 				width={{ base: 'full', md: 'auto' }}
 				mt={{ base: '3', md: '0' }}>
+				<HeaderMenuItem icon={FaMale} url='/products/men/fashion' label='Men' />
+
 				<HeaderMenuItem icon={HiShoppingBag} url='/cart' label='Cart' />
 
 				{userInfo ? (
@@ -98,6 +101,9 @@ const Header = () => {
 							Manage
 						</MenuButton>
 						<MenuList>
+							<MenuItem as={RouterLink} to='/admin/totalsales'>
+								Total Sales
+							</MenuItem>
 							<MenuItem as={RouterLink} to='/admin/userlist'>
 								All Users
 							</MenuItem>

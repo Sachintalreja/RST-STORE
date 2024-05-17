@@ -12,7 +12,7 @@ import {
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link as RouterLink, useNavigate, useParams } from 'react-router-dom';
-import { getUserDetails, updateUser } from '../actions/userActions';
+import { getUserById, updateUser } from '../actions/userActions';
 import FormContainer from '../components/FormContainer';
 import Loader from '../components/loader';
 import Message from '../components/message';
@@ -27,9 +27,10 @@ const UserEditScreen = () => {
 	const [email, setEmail] = useState('');
 	const [isAdmin, setIsAdmin] = useState(false);
 
-	const userDetails = useSelector((state) => state.userDetails);
-	const { loading, error, user } = userDetails;
+	const getuserById = useSelector((state) => state.getUserById)
+  const { loading, error, user } = getuserById
 
+	
 	const userUpdate = useSelector((state) => state.userUpdate);
 	const {
 		loading: loadingUpdate,
@@ -43,7 +44,7 @@ const UserEditScreen = () => {
 			navigate('/admin/userlist');
 		} else {
 			if (!user.name || user._id !== userId) {
-				dispatch(getUserDetails(userId));
+				dispatch(getUserById(userId));
 			} else {
 				setName(user.name);
 				setEmail(user.email);
